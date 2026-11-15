@@ -182,13 +182,13 @@ export function DrawChart({ data }: {data: StockReturn[] }) {
     };
     // Mobile Listeners
     const detectTouchScroll = (e: TouchEvent) => {
-      if (e.touches.length !== 1)
+      if (e.touches.length !== 2)
         return;
 
       startScroll(e.touches[0].clientX);
     }
     const touchToScroll = (e: TouchEvent) => {
-      if (e.touches.length !== 1)
+      if (e.touches.length !== 2)
         return;
 
       scroll(e.touches[0].clientX);
