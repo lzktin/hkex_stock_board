@@ -205,13 +205,12 @@ export function DrawChart({ data }: {data: StockReturn[] }) {
       if (e.touches.length !== 1) return;
       const touchX = e.touches[0].clientX - currentContainer.getBoundingClientRect().left;
 
-      const chartLeft = 0;
-      const chartRight = currentContainer.getBoundingClientRect().width;
-      const BEGIN_SCROLL = 2 * GRAPH_PADDING;
+      const LEFT_EDGE_THRESHOLD = 60;
+      const RIGHT_EDGE_THRESHOLD = currentContainer.getBoundingClientRect().width - GRAPH_PADDING*2;
 
-      if (touchX < chartLeft + BEGIN_SCROLL && currentDomain.current.startX > 0) {
+      if (touchX < LEFT_EDGE_THRESHOLD && currentDomain.current.startX > 0) {
         mobileEdgeScroll(-1); 
-      } else if (touchX > chartRight - BEGIN_SCROLL && currentDomain.current.endX < data.length - 1) {
+      } else if (touchX > RIGHT_EDGE_THRESHOLD && currentDomain.current.endX < data.length - 1) {
         mobileEdgeScroll(1); 
       } else {
         mobileEdgeScroll(0); 
